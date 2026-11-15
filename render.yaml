@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: dontgetupsold
+    runtime: static
+    staticPublishPath: .
+    buildCommand: ""
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
