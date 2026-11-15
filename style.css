@@ -146,8 +146,9 @@ h1 {
   padding: 0 24px 40px;
   font-size: 12px;
 }
-.foot p { display: flex; gap: 12px; align-items: center; margin: 0 0 8px; }
-.foot .small { color: #888; padding-left: 30px; }
+.foot p { margin: 0 0 8px; padding-left: 30px; text-indent: -30px; }
+.foot .i { margin: 0 8px 0 0; vertical-align: -4px; text-indent: 0; }
+.foot .small { color: #888; text-indent: 0; }
 
 @media (max-width: 680px) {
   .row { grid-template-columns: 1fr; gap: 24px; margin-bottom: 80px; }
