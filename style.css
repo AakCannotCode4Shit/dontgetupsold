@@ -1,114 +1,160 @@
-:root {
-  --ink: #111;
-  --muted: #666;
-  --red: #d7261e;
-  --tint: #f4f4f2;
-}
-
 * { box-sizing: border-box; }
 
 body {
+  overflow-x: hidden;
   margin: 0;
   background: #fff;
-  color: var(--ink);
-  font: 18px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #212121;
+  font: 16px/1.6 "Lato", Arial, sans-serif;
 }
 
-main {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 64px 24px 48px;
-}
+a { color: inherit; }
 
-a { color: inherit; text-underline-offset: 3px; }
-a:hover { color: var(--red); }
-
-h1 {
-  font-size: clamp(48px, 10vw, 88px);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  margin: 0;
-}
-.struck {
-  text-decoration: line-through;
-  text-decoration-color: var(--red);
-  text-decoration-thickness: .1em;
-  text-decoration-skip-ink: none;
-}
-.cursor {
-  display: inline-block;
-  width: 3px;
-  height: .8em;
-  margin-left: 4px;
-  background: var(--ink);
-  vertical-align: -.05em;
-  animation: blink 1s steps(1) infinite;
-}
-@keyframes blink { 50% { opacity: 0; } }
-
-.tag { margin: 8px 0 0; color: var(--muted); }
-
-.lede {
-  font-size: clamp(22px, 3.2vw, 28px);
-  line-height: 1.4;
-  margin: 48px 0 0;
-}
-
-h2 {
-  font-size: 26px;
-  letter-spacing: -0.02em;
-  margin: 72px 0 20px;
-}
-
-.pair {
-  display: grid;
-  grid-template-columns: 1fr 230px;
+/* the pointless red banner */
+.banner {
+  background: #ff0000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 24px;
-  align-items: start;
-  margin-bottom: 28px;
+  padding: 10px 16px;
+  font-size: 13px;
+}
+.banner p { margin: 0; max-width: 400px; }
+.banner-box {
+  flex: 0 1 340px;
+  height: 30px;
+  border: 1px solid #7a0000;
 }
 
-.chat {
-  list-style: none;
-  margin: 0;
-  padding: 18px 20px;
-  background: var(--tint);
-  font-size: 16px;
-  line-height: 1.4;
-}
-.chat li { padding: 5px 0; }
-.chat b { display: block; font-size: 14px; }
-
-.receipt {
-  width: 100%;
-  border-collapse: collapse;
+/* template-looking nav */
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
   font-size: 15px;
-  font-variant-numeric: tabular-nums;
-  background: var(--tint);
 }
-.receipt td { padding: 7px 12px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #555; }
+.logo-pic { font-size: 28px; }
+.links a { text-decoration: none; color: #999; margin-left: 20px; white-space: nowrap; }
+.links a.on { color: #212121; }
+
+/* scribbled title */
+.title { text-align: center; padding: 70px 16px 90px; }
+h1 {
+  font-family: "Nanum Pen Script", cursive;
+  font-weight: 400;
+  font-size: clamp(64px, 13vw, 150px);
+  line-height: .9;
+  margin: 0;
+  display: inline-block;
+  transform: rotate(-4deg);
+  letter-spacing: .02em;
+}
+.dotcom { display: block; font-size: .6em; text-align: right; transform: rotate(6deg); }
+
+/* rows that alternate sides, spacing slightly off on purpose */
+.row {
+  max-width: 900px;
+  margin: 0 auto 120px;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.words p { margin: 0 0 28px; }
+.flip .words p:not(.info) { padding-left: 30px; }
+.row:first-of-type .words { padding-top: 10px; }
+
+/* discord-ish screenshot */
+.chat {
+  background: #313338;
+  color: #dbdee1;
+  padding: 10px 14px;
+  font-size: 13px;
+}
+.m { display: flex; gap: 10px; padding: 6px 0; }
+.m i {
+  flex: none;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: #5865f2;
+}
+.m.c i { background: #b5b5b5; }
+.m b { color: #f2f3f5; font-weight: 700; }
+.m time { color: #949ba4; font-size: 11px; margin-left: 4px; }
+.m p { margin: 0; }
+.chat.small { width: 60%; }
+/* screenshot cropped badly, through the middle of the last message */
+.chat.cut { overflow: hidden; padding-bottom: 0; }
+.chat.cut .cutoff { height: 42px; padding-bottom: 0; overflow: hidden; }
+.tiny { grid-template-columns: 1fr; margin-top: 160px; }
+
+/* receipt */
+.receipt {
+  background: #fafafa;
+  padding: 20px 22px 16px;
+  font: 15px/1.5 "Courier New", monospace;
+  transform: rotate(2deg);
+  position: relative;
+}
+.shop { text-align: center; font-weight: 700; margin: 0 0 12px; letter-spacing: .2em; }
+.receipt table { width: 100%; border-collapse: collapse; }
+.receipt td { padding: 3px 0; }
 .receipt td:last-child { text-align: right; }
-.receipt .extra td:first-child { color: var(--red); }
-.receipt .total td { font-weight: 800; font-size: 18px; background: var(--ink); color: #fff; }
-.receipt.good .total td { background: #1d6b40; }
-
-p { margin: 0 0 16px; }
-ul { margin: 0 0 20px; padding-left: 22px; }
-li { padding: 2px 0; }
-ul li { font-style: italic; }
-
-footer {
-  margin-top: 72px;
-  color: var(--muted);
-  font-size: 14px;
+.receipt .tot td { font-weight: 700; padding-top: 10px; }
+.circled td:first-child { position: relative; }
+.circled td:first-child::after {
+  content: "";
+  position: absolute;
+  left: -8px; top: -3px;
+  width: 135px; height: 30px;
+  border: 2px solid #e00;
+  border-radius: 50%;
+  transform: rotate(-3deg);
+}
+.scrawl {
+  position: absolute;
+  right: -24px; bottom: -34px;
+  margin: 0;
+  font: 54px "Nanum Pen Script", cursive;
+  color: #e00;
+  transform: rotate(-12deg);
 }
 
-@media (max-width: 640px) {
-  main { padding-top: 40px; }
-  .pair { grid-template-columns: 1fr; }
+.info { display: flex; gap: 12px; }
+.i {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 18px; height: 18px;
+  border: 1.5px solid #212121;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 3px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .cursor { animation: none; }
+.list { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+.list ul { margin: 0 0 24px; }
+
+.foot {
+  max-width: 900px;
+  margin: 180px auto 0;
+  padding: 0 24px 40px;
+  font-size: 12px;
+}
+.foot p { display: flex; gap: 12px; align-items: center; margin: 0 0 8px; }
+.foot .small { color: #888; padding-left: 30px; }
+
+@media (max-width: 680px) {
+  .row { grid-template-columns: 1fr; gap: 24px; margin-bottom: 80px; }
+  .flip .words { order: 2; }
+  .chat.small { width: 85%; }
+  .banner-box { display: none; }
+  .bar { flex-wrap: wrap; gap: 6px; padding: 12px 16px; }
+  .links a { margin: 0 14px 0 0; }
+  .scrawl { right: 0; }
 }
